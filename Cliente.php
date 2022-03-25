@@ -7,18 +7,8 @@ class Cliente{
     private int $Altura;
     private string $Telefone;
 
-    public static function ListarTodos(){
-        $conexao = new Conexao();
-        $sql = "SELECT * FROM Cliente";
-        $dados = $conexao->Consultar($sql);
-       /* foreach ($dados as $i => $linha) {
-            $dados[$i]['Telefone'] = date('d/m/Y', $linha['Telefone']);
-        }
-        */
-        return $dados;
-    }
-
-    public function __construct($Cliente, $Peso, $Altura, $Telefone){
+    
+    public function __construct(string $Cliente, int $Peso, int $Altura, string $Telefone){
         $this->Cliente = $Cliente;
         $this->Peso = $Peso;
         $this->Altura = $Altura;
@@ -28,17 +18,24 @@ class Cliente{
     public function Cadastrar(){
         $conexao = new Conexao();
         $sql = "INSERT INTO
-        Cliente(Cliente, Peso, Altura, Telefone)
-        VALUES (:Cliente,:Peso,:Altura,:Telefone)";
+        Cliente(Nome, Peso, Altura, Telefone)
+        VALUES (:Nome,:Peso,:Altura,:Telefone)";
         $pdo = $conexao->Conectar();
-        $preview = $pdo->prepare($sql);
-        $preview->bindParam(':Cliente', $this->Cliente);
-        $preview->bindParam(':Peso', $this->Peso);
-        $preview->bindParam(':Altura', $this->Altura);
-        $preview->bindParam(':Telefone', $this->Telefone);
-        $preview->execute();
+        $preparo = $pdo->prepare($sql);
+        $preparo->bindParam(':Nome', $this->Nome);
+        $preparo->bindParam(':Peso', $this->Peso);
+        $preparo->bindParam(':Altura', $this->Altura);
+        $preparo->bindParam(':Telefone', $this->Telefone);
+        $preparo->execute();
     }
     
-    
+    public static function ListarTodos(){
+        $conexao = new Conexao();
+        $sql = "SELECT * FROM Cliente";
+        $dados = $conexao->Consultar($sql);
+      
+        return $dados;
+    }
+
     
 }

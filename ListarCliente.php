@@ -1,7 +1,7 @@
 <?php
-include "Carro.php";
+include "Cliente.php";
 
-$dados = Carro::ListarTodos();
+$dados = Cliente::ListarTodos();
 $json = json_encode($dados);
 header ("Content-Type: application/json; charset=UTF-8");
 
