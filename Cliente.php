@@ -7,6 +7,17 @@ class Cliente{
     private int $Altura;
     private string $Telefone;
 
+    public static function ListarTodos(){
+        $conexao = new Conexao();
+        $sql = "SELECT * FROM Cliente";
+        $dados = $conexao->Consultar($sql);
+       /* foreach ($dados as $i => $linha) {
+            $dados[$i]['Telefone'] = date('d/m/Y', $linha['Telefone']);
+        }
+        */
+        return $dados;
+    }
+
     public function __construct($Cliente, $Peso, $Altura, $Telefone){
         $this->Cliente = $Cliente;
         $this->Peso = $Peso;
@@ -17,7 +28,7 @@ class Cliente{
     public function Cadastrar(){
         $conexao = new Conexao();
         $sql = "INSERT INTO
-        Computador(Cliente, Peso, Altura, Telefone)
+        Cliente(Cliente, Peso, Altura, Telefone)
         VALUES (:Cliente,:Peso,:Altura,:Telefone)";
         $pdo = $conexao->Conectar();
         $preview = $pdo->prepare($sql);
@@ -28,13 +39,6 @@ class Cliente{
         $preview->execute();
     }
     
-    public static function ListarTodos(){
-        $conexao = new Conexao();
-        $sql = "SELECT * FROM Computador";
-        $dados = $conexao->Consultar($sql);
-        foreach ($dados as $i => $linha) {
-            $dados[$i]['Telefone'] = date('d/m/Y', $linha['Telefone']);
-        }
-        return $dados;
-    }
+    
+    
 }

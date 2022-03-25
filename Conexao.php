@@ -6,9 +6,9 @@
         private $senha;
 
         public function __construct(){
-            $this->servidor = "fdb28.awardspace.net";
-            $this->banco = $this->usuario = "3593418_wpress562372c0";
-            $this->senha = "rGjtqVmWxkzSSYW9oFfsUAGQ6OZcpJ6F";
+            $this->servidor = "fdb33.awardspace.net";
+            $this->banco = $this->usuario = "4000018_aulapw";
+            $this->senha = "Laura1803#";
         }
         
         public function Consultar($sql){
