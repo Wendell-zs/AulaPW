@@ -1,7 +1,7 @@
 let dados;
 
 function carregarDados(funcao){
-    fetch("/crudmvc.scienceontheweb.net/ListarCliente.php")
+    fetch("crudmvc.scienceontheweb.net/ListarCliente.php")
     .then(conteudo => conteudo.text())
     .then(texto => {
         dados = JSON.parse(texto)
@@ -14,10 +14,10 @@ function exibirTabela(){
     let tabela = '';
     dados.forEach(Cliente => {
         tabela += '<tr>';
-        tabela += '<td>${Cliente.Nome}</td>';
-        tabela += '<td>${Cliente.Telefone}</td>';
-        tabela += '<td>${Cliente.Altura}</td>';
-        tabela += '<td>${Cliente.Peso}</td>';
+        tabela += `<td>${Cliente.Nome}</td>`;
+        tabela += `<td>${Cliente.Telefone}</td>`;
+        tabela += `<td>${Cliente.Altura}</td>`;
+        tabela += `<td>${Cliente.Peso}</td>`;
         tabela += '</tr>';
 
     });
